@@ -8,11 +8,15 @@
 
 ## 프로젝트 기간
 - 2024년 11월 25일 ~
+- 계속 수정 예정
 
 ## 참여 인원
 - 개인 프로젝트
 
 ## 프로젝트 구조
+
+- 용량이 큰 파일 등은 GitHub에 업로드하지 않았음
+
 ```
 악성_댓글_탐지
  ┣ codes_and_datasets
@@ -30,7 +34,6 @@
  ┃ ┃ ┗ X_val.pt
  ┣ models
  ┃ ┣ checkpoint.pt
- ┃ ┣ model_mini_state_dict.pt
  ┃ ┗ var_models.json
  ┣ utils
  ┃ ┣ fastText_pretrained.model
@@ -60,7 +63,9 @@
 
 ## 실행 예시
 
-
+- 대략 1분 20초 소요
+- 더 줄일 수 있는 방법이 있는지 고민할 예정
+  
 ```
 {
   "idx_0": {
