@@ -4,6 +4,17 @@ from gensim.models import FastText
 from config import ConfigUtils
 
 def padding(text_list):
+    '''
+    :param text_list: 2차원 list
+                      (첫 번째 차원에 문장, 두 번째 차원에 각 문장별 단어 토큰)
+    :return: 2차원 list
+             (첫 번째 차원에 문장, 두 번째 차원에 각 문장별 단어 토큰)
+             shape: (문장 개수, sequence 길이)
+
+    padding을 수행하는 함수
+    지정된 max_len보다 큰 sequence가 들어오면 초과된 길이의 앞 부분을 잘라내고,
+    지정된 max_len보다 작은 sequence가 들어오면 모자란 길이의 앞 부분에 <pad>를 추가
+    '''
     config_utils = ConfigUtils(tokenizer_path='./utils/tokenizer.pickle',
                                var_utils_path='./utils/var_utils.json',
                                fasttext_path='./utils/fastText_pretrained.model')
@@ -24,6 +35,18 @@ def padding(text_list):
     return pad_text_list
 
 def vectorization(text_list):
+    '''
+    :param text_list: 2차원 list
+                      (첫 번째 차원에 문장, 두 번째 차원에 각 문장별 단어 토큰)
+                      shape: (문장 개수, sequence 길이)
+    :return: 3차원 list
+             (첫 번째 차원에 문장, 두 번째 차원에 각 문장별 단어 토큰,
+             세 번째 차원에 단어 토큰에 대응하는 FastText 임베딩 벡터)
+             shape: (문장 개수, sequence 길이, 임베딩 벡터 크기)
+
+    사전 훈련된 FastText 모델을 이용해 단어 토큰을 임베딩 벡터로 변환
+    FastText 모델은 OOV에 해당하는 단어도 임베딩 벡터로 바꿀 수 있다.
+    '''
     config_utils = ConfigUtils(tokenizer_path='./utils/tokenizer.pickle',
                                var_utils_path='./utils/var_utils.json',
                                fasttext_path='./utils/fastText_pretrained.model')
@@ -47,6 +70,15 @@ def vectorization(text_list):
 
 
 def prepare_nlp(text_list):
+    '''
+    :param text_list: 2차원 list
+                      (첫 번째 차원에 문장, 두 번째 차원에 각 문장별 단어 토큰)
+    :return: 3차원 list
+             (첫 번째 차원에 문장, 두 번째 차원에 각 문장별 단어 토큰,
+             세 번째 차원에 단어 토큰에 대응하는 FastText 임베딩 벡터)
+
+    padding()과 vectorization() 함수를 한 함수로 묶음
+    '''
     pad_text_list = padding(text_list)
     vector_text_list = vectorization(pad_text_list)
 

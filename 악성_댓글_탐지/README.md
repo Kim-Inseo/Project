@@ -2,20 +2,21 @@
 - 악성 댓글 탐지 프로젝트
 
 ## 프로젝트 소개
-- FastText 사전 훈련 모델, LSTM을 활용해서 악성 댓글을 탐지하는 프로젝트입니다.
+- FastText 사전 훈련 모델, (bi)LSTM을 활용해서 악성 댓글을 탐지하는 프로젝트입니다.
    
 - 악성 댓글이 문제가 되는 요즘 상황을 참고하여 이 주제를 선정했습니다.
 
 ## 프로젝트 기간
 - 2024년 11월 25일 ~
 - 계속 수정 예정
+- FastAPI 부분은 아직 완성된 상태가 아님.
 
 ## 참여 인원
 - 개인 프로젝트
 
 ## 프로젝트 구조
 
-- 용량이 큰 파일 등은 GitHub에 업로드하지 않았음
+- 용량이 큰 파일 등등은 GitHub에 업로드하지 않았음
 
 ```
 악성_댓글_탐지
@@ -42,17 +43,10 @@
  ┃ ┣ fastText_pretrained.model.wv.vectors_vocab.npy
  ┃ ┣ tokenizer.pickle
  ┃ ┗ var_utils.json
- ┣ __pycache__
- ┃ ┣ comment.cpython-310.pyc
- ┃ ┣ config.cpython-310.pyc
- ┃ ┣ main.cpython-310.pyc
- ┃ ┣ modeling.cpython-310.pyc
- ┃ ┣ models.cpython-310.pyc
- ┃ ┣ preparing_nlp.cpython-310.pyc
- ┃ ┗ preprocessing.cpython-310.pyc
  ┣ comment.py
  ┣ config.py
  ┣ main.py
+ ┣ main_local.py
  ┣ modeling.py
  ┣ models.py
  ┣ preparing_nlp.py

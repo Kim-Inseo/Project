@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from comment import Item
+import uvicorn
 
 from preprocessing import preprocess_text
 from preparing_nlp import prepare_nlp
@@ -7,7 +8,7 @@ from modeling import classify
 
 app = FastAPI()
 
-@app.post('/items/')
+@app.post('/')
 async def classify_comment(item: Item):
     after_preprocess = preprocess_text(item.text)
     after_prepare = prepare_nlp(after_preprocess)

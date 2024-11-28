@@ -6,6 +6,12 @@ from models import CustomModel
 from torch.utils.data import DataLoader, Dataset
 
 class CustomDataset(Dataset):
+    '''
+    3차원 list를 받아서
+    shape: (문장 개수, sequence 길이, 임베딩 벡터 크기)
+    각 batch마다 3차원 Tensor를 반환할 수 있도록 한다
+    shape: (batch 크기, sequence 길이, 임베딩 벡터 크기)
+    '''
     def __init__(self, embeddings):
         self.embeddings = embeddings
 
@@ -19,6 +25,15 @@ class CustomDataset(Dataset):
 
 
 def classify(text_tokens_list):
+    '''
+    :param text_tokens_list: 3차원 리스트
+                             (첫 번째 차원에 문장, 두 번째 차원에 각 문장별 단어 토큰,
+                             세 번째 차원에 단어 토큰에 대응하는 FastText 임베딩 벡터)
+                             shape: (문장 개수, sequence 길이, 임베딩 벡터 크기)
+    :return: 2차원 리스트
+             (첫 번째 차원에 문장, 두 번째 차웜에 각 문장별 악성 댓글 여부와 해당 확률)
+             shape: (문장 개수, 2)
+    '''
     batch_size = 1
     dataset = CustomDataset(text_tokens_list)
     data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
@@ -49,7 +64,9 @@ def classify(text_tokens_list):
             inputs = batch['embeddings'].to(device)
             outputs = model(inputs)
             prob = F.softmax(outputs, dim=-1)
+            # shape: (batch 크기, 2)
             max_val_list, predict_list = torch.max(prob.data, -1)
+            # 각각의 shape: (batch 크기,)
             is_malicious = ['악성 댓글' if predict else '악성 댓글 아님' for predict in predict_list]
 
             result = list(zip(is_malicious, max_val_list))
