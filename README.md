@@ -18,4 +18,4 @@
 
 - 개인 프로젝트
   - 악성_댓글_탐지
-    - https://github.com/Kim-Inseo/Project_MaliciousCommentDetection   
+    - [https://github.com/Kim-Inseo/Project_MaliciousCommentDetection](https://github.com/Kim-Inseo/MaliciousCommentDetection)   
