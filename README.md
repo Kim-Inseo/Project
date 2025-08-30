@@ -21,3 +21,4 @@
 
 - 개인 프로젝트
   - 악성 댓글 탐지 프로젝트(https://github.com/Kim-Inseo/Project_AbuseDetection)
+    - 현재 Private 상태임. (수정 후 다시 공개 예정)
